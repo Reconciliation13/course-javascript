@@ -12,10 +12,10 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument(a) {
-  var a = 10;
-  console.log(a)
+function returnFirstArgument(value) {
+  return value;
 }
+console.log(returnFirstArgument(10));
 
 /*
  Задание 2:
@@ -31,7 +31,13 @@ function returnFirstArgument(a) {
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {}
+function sumWithDefaults(a, b = 100) {
+  const result = a + b;
+
+  return result;
+}
+
+console.log(sumWithDefaults(-24));
 
 /*
  Задание 3:
@@ -41,7 +47,18 @@ function sumWithDefaults(a, b) {}
  Пример:
    returnFnResult(() => 'привет') вернет 'привет'
  */
-function returnFnResult(fn) {}
+
+function fn(x) {
+  return 'hello';
+}
+
+function returnFnResult(fn) {
+  return fn();
+}
+
+const resultFn = returnFnResult(fn);
+
+console.log(resultFn);
 
 /*
  Задание 4:
@@ -59,7 +76,13 @@ function returnFnResult(fn) {}
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {}
+function returnCounter(number = 0) {
+  return () => ++number;
+}
+const f = returnCounter();
+
+console.log(f());
+console.log(f());
 
 /*
  Задание 5 *:
@@ -70,8 +93,10 @@ function returnCounter(number) {}
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray() {}
-
+function returnArgumentsArray(...args) {
+  return args;
+}
+console.log(returnArgumentsArray(5, 7, 9, 11));
 /*
  Задание 6 *:
 
@@ -87,7 +112,18 @@ function returnArgumentsArray() {}
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn, ...args) {}
+
+function fni(...args) {
+  return args;
+}
+
+function bindFunction(fni, ...args) {
+  return () => fni(...args);
+}
+
+const newSum = bindFunction(fni, 2, 4);
+
+console.log(newSum());
 
 export {
   returnFirstArgument,
